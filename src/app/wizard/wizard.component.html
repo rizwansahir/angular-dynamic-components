@@ -1,0 +1,82 @@
+<!--<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{data.flowDescription}}</mat-card-title>
+    <mat-card-subtitle>You need to follow the steps in order to register the card without KYC flow</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    &lt;!&ndash; #myForm is reference to the ngForm directive being applied to this form &ndash;&gt;
+    <form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm" novalidate>
+      &lt;!&ndash; decision to make horizontal or vertical steps based upon response object &ndash;&gt;
+      <mat-horizontal-stepper *ngIf="data.stepsOrientation === 'H'" linear>
+        <mat-step #personalInfo="ngModelGroup" ngModelGroup="personalInfo" [completed]="personalInfo.valid">
+          <ng-template matStepLabel>Personal Information</ng-template>MdStepperModule
+          &lt;!&ndash; Creating a template reference of component with hashtag which returns the component reference which can be used to
+          access any method or property of this component later on
+          &ndash;&gt;
+          <personal-info modelGroupName="personalInfo" #personalInfoSec></personal-info>
+          &lt;!&ndash; {{personalInfoSec.name}} &ndash;&gt;
+        </mat-step>
+        <mat-step #addressInfo="ngModelGroup" ngModelGroup="addressInfo" [completed]="addressInfo.valid">
+          <ng-template matStepLabel>Address Information</ng-template>
+          <address-info modelGroupName="addressInfo" #addressInfoSec></address-info>
+        </mat-step>
+
+
+        <mat-step>
+          <ng-template matStepLabel>Registration Review</ng-template>
+          <review-info modelGroupName="reviewInfo" #reviewInfoSec></review-info>
+
+        </mat-step>
+      </mat-horizontal-stepper>
+      <mat-vertical-stepper *ngIf="data.stepsOrientation === 'V'" linear>
+        <mat-step #personalInfo="ngModelGroup" ngModelGroup="personalInfo" [completed]="personalInfo.valid">
+          <ng-template matStepLabel>Personal Information</ng-template>
+          &lt;!&ndash; Creating a template reference of component with hashtag which returns the component reference which can be used to
+          access any method or property of this component later on
+          &ndash;&gt;
+          <personal-info modelGroupName="personalInfo" #personalInfoSec></personal-info>
+          &lt;!&ndash; {{personalInfoSec.name}} &ndash;&gt;
+        </mat-step>
+
+        <mat-step #addressInfo="ngModelGroup" ngModelGroup="addressInfo" [completed]="addressInfo.valid">
+          <ng-template matStepLabel>Address Information</ng-template>
+          <address-info modelGroupName="addressInfo" #addressInfo></address-info>
+        </mat-step>
+
+
+        <mat-step>
+          <ng-template matStepLabel>Registration Review</ng-template>
+          <review-info modelGroupName="reviewInfo" #reviewInfo></review-info>
+
+        </mat-step>
+      </mat-vertical-stepper>
+      <div>
+        <button mat-raised-button type="button" (click)="onClick(myForm)" color="primary">Process Registration</button>
+      </div>
+    </form>
+    &lt;!&ndash; <pre>{{ f.value | json }}</pre> &ndash;&gt;
+  </mat-card-content>
+</mat-card>
+
+<div *ngFor=" let v of componentsList">
+  
+  <div #C1></div> 
+</div> 
+<ng-container *ngFor="let cmp of myCmps">
+  {{cmp.componentType}}
+   <ng-container *ngComponentOutlet="cmp"></ng-container>
+ </ng-container>
+-->
+
+
+  <mat-horizontal-stepper   #stepper>
+    <div *ngFor="let cmp of componentsList">
+    <mat-step [stepControl]="cmp.formGroupName" label="{{cmp.stepTitle}}">
+      <ng-container #C1></ng-container>
+    </mat-step>
+</div>
+    </mat-horizontal-stepper>
+ 
+  <!--<personal-info></personal-info>-->
+ 
+
